@@ -1,0 +1,4 @@
+**/build
+**/.gradle
+*.vpp.lck
+*.vpp.bak_*
