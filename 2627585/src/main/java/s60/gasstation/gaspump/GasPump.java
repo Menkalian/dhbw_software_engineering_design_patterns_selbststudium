@@ -32,12 +32,12 @@ public class GasPump implements IGasPump {
 
             // Setting amount
             int targetAmount = ((int) (Math.random() * 11)) * 5;
-            if (targetAmount < currentAmount) {
-                while (targetAmount < currentAmount) {
+            if (targetAmount > currentAmount) {
+                while (targetAmount > currentAmount) {
                     buttonPanel.pressB01();
                 }
             } else {
-                while (targetAmount > currentAmount) {
+                while (targetAmount < currentAmount) {
                     buttonPanel.pressB02();
                 }
             }
