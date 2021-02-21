@@ -53,7 +53,7 @@ public class ParkingLot implements IParkingLot {
         if (nextSpot != null) {
             nextVehicle = nextSpot.getVehicle();
         }
-        
+
         display.displayNextVehicle(nextVehicle);
         return nextVehicle;
     }

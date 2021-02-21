@@ -17,11 +17,6 @@ public class ParkingSpot implements IParkingSpot {
     }
 
     @Override
-    public String getId () {
-        return id;
-    }
-
-    @Override
     public Vehicle getVehicle () {
         waitedFor = -1; // reset waiting time
         return currentVehicle;
@@ -39,6 +34,11 @@ public class ParkingSpot implements IParkingSpot {
             }
         }
         return false;
+    }
+
+    @Override
+    public String getId () {
+        return id;
     }
 
     @Override

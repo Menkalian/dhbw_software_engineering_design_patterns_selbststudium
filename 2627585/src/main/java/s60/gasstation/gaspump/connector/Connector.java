@@ -5,8 +5,8 @@ import s60.gasstation.gaspump.connector.sensor.IConnectorSensor;
 import s60.gasstation.vehicle.Vehicle;
 
 public class Connector implements IConnector {
-    private IGasPump pump;
     private final IConnectorSensor sensor;
+    private IGasPump pump;
     private Vehicle currentVehicle;
 
     public Connector (IConnectorSensor sensor) {

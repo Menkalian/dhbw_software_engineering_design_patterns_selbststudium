@@ -36,13 +36,13 @@ public class GasPumpButtonB03 extends GasPumpButton {
         panel.getB03State().b03Pressed();
     }
 
+    public IConnectorSensor.ISensorListener getOnConnectedListenerS1 () {
+        return onConnectedListenerS1;
+    }
+
     // Needed since the listener can't reference itself
     private void removeListeners () {
         pump.getConnectorInPumpSensor().removeListener(onConnectorBackListener);
         pump.getConnector().getSensor().removeListener(onConnectedListenerS1);
-    }
-
-    public IConnectorSensor.ISensorListener getOnConnectedListenerS1 () {
-        return onConnectedListenerS1;
     }
 }

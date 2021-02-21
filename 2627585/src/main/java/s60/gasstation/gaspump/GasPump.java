@@ -50,7 +50,7 @@ public class GasPump implements IGasPump {
             getConnector().putBack();
 
             // Choose payment
-            if(Math.random() <= 0.5) {
+            if (Math.random() <= 0.5) {
                 buttonPanel.pressB01();
             } else {
                 buttonPanel.pressB02();

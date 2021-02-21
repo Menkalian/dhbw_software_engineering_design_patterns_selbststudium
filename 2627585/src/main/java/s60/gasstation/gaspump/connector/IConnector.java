@@ -10,5 +10,5 @@ public interface IConnector {
 
     void putBack ();
 
-    IConnectorSensor getSensor();
+    IConnectorSensor getSensor ();
 }

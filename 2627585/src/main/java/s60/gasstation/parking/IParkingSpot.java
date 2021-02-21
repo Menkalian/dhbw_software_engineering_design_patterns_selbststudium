@@ -7,7 +7,7 @@ public interface IParkingSpot {
 
     boolean storeVehicle (Vehicle toStore);
 
-    String getId();
+    String getId ();
 
     int getWaitedFor ();
 
