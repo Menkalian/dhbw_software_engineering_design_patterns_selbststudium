@@ -8,6 +8,7 @@ public abstract class GasPumpButton {
     protected final IGasPump pump;
 
     protected GasPumpButton (String id, IGasPumpButtonPanel panel, IGasPump pump) {
+        System.out.println("INIT: Initializing GasPumpButton (CL: " + this.getClass().getSimpleName() + ")");
         this.id = id;
         this.panel = panel;
         this.pump = pump;

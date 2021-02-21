@@ -11,6 +11,7 @@ public class GasPumpButtonPanel implements IGasPumpButtonPanel {
     private final GasPumpButtonB03 button03;
 
     public GasPumpButtonPanel (IGasPump pump) {
+        System.out.println("INIT: Initializing GasPumpButtonPanel");
         buttons = new ArrayList<>(3);
         buttons.add(new GasPumpButtonB01(this, pump));
         buttons.add(new GasPumpButtonB02(this, pump));

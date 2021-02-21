@@ -18,9 +18,8 @@ public class Connector implements IConnector {
     }
 
     @Override
-    public void stickIn (Vehicle vehicle) {
-        currentVehicle = vehicle;
-        sensor.connected();
+    public IConnectorSensor getSensor () {
+        return sensor;
     }
 
     @Override
@@ -29,13 +28,16 @@ public class Connector implements IConnector {
     }
 
     @Override
-    public void putBack () {
-        currentVehicle = null;
-        pump.getConnectorInPumpSensor().connectorIn();
+    public void stickIn (Vehicle vehicle) {
+        System.out.println("CONN: Sticking Connector in vehicle");
+        currentVehicle = vehicle;
+        sensor.connected();
     }
 
     @Override
-    public IConnectorSensor getSensor () {
-        return sensor;
+    public void putBack () {
+        System.out.println("CONN: Putting Connector back");
+        currentVehicle = null;
+        pump.getConnectorInPumpSensor().connectorIn();
     }
 }

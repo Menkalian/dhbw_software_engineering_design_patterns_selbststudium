@@ -9,16 +9,19 @@ public class GasPumpButtonStateS0 extends GasPumpButtonState {
 
     @Override
     public void b01Pressed () {
+        System.out.println("GPBS: B01 pressed in State S0");
         button.getPump().increaseAmount();
     }
 
     @Override
     public void b02Pressed () {
+        System.out.println("GPBS: B02 pressed in State S0");
         button.getPump().decreaseAmount();
     }
 
     @Override
     public void b03Pressed () {
+        System.out.println("GPBS: B03 pressed in State S0");
         button.setState(new GasPumpButtonStateS1(button));
         button.getPump().getConnector().getSensor().addListener(button.getOnConnectedListenerS1());
     }

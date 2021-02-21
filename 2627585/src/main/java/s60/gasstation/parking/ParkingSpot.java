@@ -11,20 +11,33 @@ public class ParkingSpot implements IParkingSpot {
     private Vehicle currentVehicle;
 
     public ParkingSpot (String id, VehicleType type, IParkingSpot successor) {
+        System.out.println("INIT: Initializing ParkingSpot " + id);
+
         this.id = id;
         this.type = type;
         this.successor = successor;
     }
 
     @Override
+    public String getId () {
+        return id;
+    }
+
+    @Override
     public Vehicle getVehicle () {
+        System.out.println("PSPT: Vehicle leaving " + getId());
+        Vehicle toReturn = currentVehicle;
+
         waitedFor = -1; // reset waiting time
-        return currentVehicle;
+        currentVehicle = null;
+
+        return toReturn;
     }
 
     @Override
     public boolean storeVehicle (Vehicle toStore) {
         if (canStore(toStore)) {
+            System.out.println("PSPT: Storing " + toStore + " at " + getId());
             waitedFor = 0;
             currentVehicle = toStore;
             return true;
@@ -37,11 +50,6 @@ public class ParkingSpot implements IParkingSpot {
     }
 
     @Override
-    public String getId () {
-        return id;
-    }
-
-    @Override
     public int getWaitedFor () {
         return waitedFor;
     }
@@ -51,6 +59,7 @@ public class ParkingSpot implements IParkingSpot {
         if (currentVehicle != null) {
             waitedFor++;
         }
+
         if (successor != null) {
             successor.incrementWaitedFor();
         }

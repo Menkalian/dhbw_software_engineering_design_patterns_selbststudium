@@ -5,11 +5,11 @@ import s60.gasstation.gaspump.sensor.IConnectorInPumpSensor;
 import s60.gasstation.vehicle.Vehicle;
 
 public interface IGasPump {
-    void serve (Vehicle vehicle);
-
     IConnectorInPumpSensor getConnectorInPumpSensor ();
 
     IConnector getConnector ();
+
+    void serve (Vehicle vehicle);
 
     void increaseAmount ();
 

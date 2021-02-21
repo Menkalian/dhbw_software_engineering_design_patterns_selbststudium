@@ -18,11 +18,13 @@ public abstract class Vehicle {
         int rightLimit = 'z';
         int targetLength = 8;
 
-        id = rng.ints(leftLimit,rightLimit + 1)
+        id = rng.ints(leftLimit, rightLimit + 1)
                 .filter(Character::isLetterOrDigit)
                 .limit(targetLength)
-                .collect(StringBuilder::new,StringBuilder::appendCodePoint,StringBuilder::append)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
+
+        System.out.println("INIT: Initializing Vehicle " + id + "(type: " + type + ";energy:" + energy + ")");
     }
 
     public VehicleType getType () {
@@ -38,6 +40,11 @@ public abstract class Vehicle {
     }
 
     public void fuel (int amount) {
-        System.out.println("Vehicle \"" + getId() + "\" was fueled with " + amount + " Units.");
+        System.out.println("VHCL: Vehicle \"" + getId() + "\" was fueled with " + amount + " Units.");
+    }
+
+    @Override
+    public String toString () {
+        return id;
     }
 }

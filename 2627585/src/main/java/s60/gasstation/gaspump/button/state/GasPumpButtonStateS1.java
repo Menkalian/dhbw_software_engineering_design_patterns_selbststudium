@@ -9,16 +9,19 @@ public class GasPumpButtonStateS1 extends GasPumpButtonState {
 
     @Override
     public void b01Pressed () {
-        System.out.println("WARN: Buttons are deactivated in S1.");
+        System.out.println("GPBS: B01 pressed in State S1");
+        System.out.println("\033[38;5;221mWARN: Buttons are deactivated in S1.\033[0m");
     }
 
     @Override
     public void b02Pressed () {
-        System.out.println("WARN: Buttons are deactivated in S1.");
+        System.out.println("GPBS: B02 pressed in State S1");
+        System.out.println("\033[38;5;221mWARN: Buttons are deactivated in S1.\033[0m");
     }
 
     @Override
     public void b03Pressed () {
-        System.out.println("WARN: Buttons are deactivated in S1.");
+        System.out.println("GPBS: B03 pressed in State S1");
+        System.out.println("\033[38;5;221mWARN: Buttons are deactivated in S1.\033[0m");
     }
 }

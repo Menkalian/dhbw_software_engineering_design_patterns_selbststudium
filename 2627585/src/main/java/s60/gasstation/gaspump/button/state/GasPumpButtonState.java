@@ -6,6 +6,7 @@ public abstract class GasPumpButtonState {
     protected final GasPumpButtonB03 button;
 
     protected GasPumpButtonState (GasPumpButtonB03 button) {
+        System.out.println("INIT: Initializing GasPumpButtonState (CL: " + this.getClass().getSimpleName() + ")");
         this.button = button;
     }
 

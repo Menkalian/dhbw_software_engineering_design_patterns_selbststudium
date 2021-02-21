@@ -4,11 +4,11 @@ import s60.gasstation.gaspump.connector.sensor.IConnectorSensor;
 import s60.gasstation.vehicle.Vehicle;
 
 public interface IConnector {
-    void stickIn (Vehicle vehicle);
+    IConnectorSensor getSensor ();
 
     Vehicle getVehicle ();
 
-    void putBack ();
+    void stickIn (Vehicle vehicle);
 
-    IConnectorSensor getSensor ();
+    void putBack ();
 }

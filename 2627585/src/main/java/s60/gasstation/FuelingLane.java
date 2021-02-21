@@ -27,6 +27,7 @@ public class FuelingLane implements IFuelingLane {
     @Override
     public void serveVehicle (Vehicle vehicle) {
         if (canServe(vehicle)) {
+            System.out.println("LANE: " + type + "-lane serving " + vehicle);
             gasPumps[0].serve(vehicle);
         } else {
             if (successor != null) {

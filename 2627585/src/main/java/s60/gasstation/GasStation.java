@@ -36,6 +36,7 @@ public class GasStation implements IGasStation {
 
     @Override
     public void startSimulation () {
+        System.out.println("GSTN: Starting Simulation");
         // Fill ParkingLot to 80 % [40 vehicles]
         for (int i = 0 ; i < 40 ; i++) {
             Vehicle arriving;
@@ -57,6 +58,7 @@ public class GasStation implements IGasStation {
             // 30% probability
             if (rand < 0.30) {
                 int amount = (int) ((Math.random() * 3) + 1);
+                System.out.println("GSTN: " + amount + " vehicles arriving.");
                 for (int i = 0 ; i < amount ; i++) {
                     Vehicle arriving;
 
@@ -79,6 +81,8 @@ public class GasStation implements IGasStation {
         Vehicle nextVehicle;
         while ((nextVehicle = getParkingLot().callNextVehicle()) != null) {
             getLanes().get(0).serveVehicle(nextVehicle);
+            System.out.println("GSTN: Done serving " + nextVehicle);
+            System.out.println();
         }
     }
 

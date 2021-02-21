@@ -9,6 +9,7 @@ public class GasPumpButtonB02 extends GasPumpButton {
 
     @Override
     public void press () {
+        System.out.println("PBTN: Button B02 pressed!");
         panel.getB03State().b02Pressed();
     }
 }
