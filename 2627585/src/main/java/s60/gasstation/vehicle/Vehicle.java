@@ -1,6 +1,5 @@
 package s60.gasstation.vehicle;
 
-import java.util.PrimitiveIterator;
 import java.util.Random;
 
 public abstract class Vehicle {
@@ -15,15 +14,15 @@ public abstract class Vehicle {
         energy = EnergyType.values()[rng.nextInt(EnergyType.values().length)];
 
         // Generate random ID
-        PrimitiveIterator.OfInt iterator = rng.ints().iterator();
-        StringBuilder tempId = new StringBuilder();
-        while (iterator.hasNext() && tempId.length() < 8) {
-            char c = ((char) iterator.nextInt());
-            if (Character.isLetterOrDigit(c)) {
-                tempId.append(c);
-            }
-        }
-        id = tempId.toString();
+        int leftLimit = '0';
+        int rightLimit = 'z';
+        int targetLength = 8;
+
+        id = rng.ints(leftLimit,rightLimit + 1)
+                .filter(Character::isLetterOrDigit)
+                .limit(targetLength)
+                .collect(StringBuilder::new,StringBuilder::appendCodePoint,StringBuilder::append)
+                .toString();
     }
 
     public VehicleType getType () {
