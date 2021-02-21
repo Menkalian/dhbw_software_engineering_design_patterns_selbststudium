@@ -9,5 +9,5 @@ public interface IGasStation {
 
     IParkingLot getParkingLot ();
 
-    void startSimulation ();
+    void startSimulation (int initialVehicles, double probabilityNewVehicles);
 }

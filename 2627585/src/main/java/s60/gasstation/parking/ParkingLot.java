@@ -57,9 +57,13 @@ public class ParkingLot implements IParkingLot {
             nextVehicle = nextSpot.getVehicle();
         }
 
-        System.out.println("PLOT: Found vehicle " + nextVehicle + ". Incrementing waiting time for others.");
-        // Increment waiting time for remaining spots
-        spots[0][0].incrementWaitedFor();
+        if (nextVehicle == null) {
+            System.out.println("PLOT: No Vehicles available");
+        } else {
+            System.out.println("PLOT: Found vehicle " + nextVehicle + ". Incrementing waiting time for others.");
+            // Increment waiting time for remaining spots
+            spots[0][0].incrementWaitedFor();
+        }
 
         display.displayNextVehicle(nextVehicle);
         return nextVehicle;

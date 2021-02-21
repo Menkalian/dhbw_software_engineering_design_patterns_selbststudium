@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 public class GasStation implements IGasStation {
     private final List<IFuelingLane> lanes;
@@ -35,44 +36,36 @@ public class GasStation implements IGasStation {
     }
 
     @Override
-    public void startSimulation () {
+    public void startSimulation (int initialVehicles, double probabilityNewVehicles) {
         System.out.println("GSTN: Starting Simulation");
-        // Fill ParkingLot to 80 % [40 vehicles]
-        for (int i = 0 ; i < 40 ; i++) {
-            Vehicle arriving;
 
-            // 30% trucks according to percentage of parking spots
-            double cartypeRandom = Math.random();
-            if (cartypeRandom < 0.30) {
-                arriving = new Truck();
-            } else {
-                arriving = new Car();
+        Consumer<Integer> generateCars = (amount) -> {
+            for (int i = 0 ; i < amount ; i++) {
+                Vehicle arriving;
+
+                // 30% trucks according to percentage of parking spots
+                double cartypeRandom = Math.random();
+                if (cartypeRandom < 0.30) {
+                    arriving = new Truck();
+                } else {
+                    arriving = new Car();
+                }
+
+                getParkingLot().storeVehicle(arriving);
             }
+        };
 
-            getParkingLot().storeVehicle(arriving);
-        }
+        // Store initial vehicles
+        generateCars.accept(initialVehicles);
 
         Runnable carsArrivingRunnable = () -> {
             double rand = Math.random();
 
             // 30% probability
-            if (rand < 0.30) {
+            if (rand < probabilityNewVehicles) {
                 int amount = (int) ((Math.random() * 3) + 1);
                 System.out.println("GSTN: " + amount + " vehicles arriving.");
-                for (int i = 0 ; i < amount ; i++) {
-                    Vehicle arriving;
-
-                    // 30% trucks according to percentage of parking spots
-                    double cartypeRandom = Math.random();
-                    if (cartypeRandom < 0.30) {
-                        arriving = new Truck();
-                    } else {
-                        arriving = new Car();
-                    }
-
-                    getParkingLot().storeVehicle(arriving);
-                }
-
+                generateCars.accept(amount);
             }
         };
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
@@ -84,6 +77,8 @@ public class GasStation implements IGasStation {
             System.out.println("GSTN: Done serving " + nextVehicle);
             System.out.println();
         }
+        System.out.println("\nSYSM: All vehicles done. Shutting down!\n");
+        executorService.shutdown();
     }
 
     public static class Builder {

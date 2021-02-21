@@ -25,7 +25,9 @@ public class ParkingSpot implements IParkingSpot {
 
     @Override
     public Vehicle getVehicle () {
-        System.out.println("PSPT: Vehicle leaving " + getId());
+        if (currentVehicle != null) {
+            System.out.println("PSPT: Vehicle leaving " + getId());
+        }
         Vehicle toReturn = currentVehicle;
 
         waitedFor = -1; // reset waiting time
